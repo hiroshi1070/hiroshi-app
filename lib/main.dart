@@ -71,7 +71,7 @@ class _SplashScreenState extends State<SplashScreen>
     _loadConfig();
   }
 
-  Future<void> _go(String url) {
+  void _go(String url) {
     if (!mounted) return;
     Navigator.pushReplacement(
       context,
@@ -255,7 +255,7 @@ class AppSecurity {
   /// Root/jailbreak + (optional) emulator စစ်
   static Future<bool> isDeviceCompromised() async {
     try {
-      return await FlutterJailbreakDetection.isJailBroken;
+      return await FlutterJailbreakDetection.jailbroken;
     } catch (_) {
       return false;
     }

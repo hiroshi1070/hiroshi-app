@@ -19,5 +19,6 @@ dependencies:
 
 flutter:
   uses-material-design: true
-  assets:
-    - assets/animations/loading.json
+  # logo / Lottie (assets/animations/loading.json) ရမှ အောက်က 2 ကြောင်း uncomment လုပ်
+  # assets:
+  #   - assets/animations/loading.json
