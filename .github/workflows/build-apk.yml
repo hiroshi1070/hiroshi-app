@@ -1,0 +1,34 @@
+name: Build HiroShi APK (preview)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'
+          channel: stable
+
+      - name: Scaffold + inject app code
+        run: |
+          # repo root = smm_webview_app (lib/ pubspec.yaml ရှိတဲ့နေရာ)
+          flutter create . --project-name hiroshi_services_app --org com.hiroshiservices --overwrite
+          flutter pub get
+
+      - name: Build hardened release APK (obfuscated)
+        run: |
+          flutter build apk --release --obfuscate --split-debug-info=build/debug-info \
+            --dart-define=CONFIG_SECRET=${{ secrets.CONFIG_SECRET }} \
+            --dart-define=APP_KEY=${{ secrets.APP_KEY }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hiroshi-preview-apk
+          path: build/app/outputs/flutter-apk/app-release.apk

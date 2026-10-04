@@ -1,0 +1,23 @@
+name: hiroshi_services_app
+description: HiroShi Services - Website Web-to-Native App with Dynamic Domain
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  webview_flutter: ^4.4.2
+  http: ^1.1.0
+  shared_preferences: ^2.2.2
+  lottie: ^3.0.0
+  connectivity_plus: ^5.0.2
+  crypto: ^3.0.3
+  flutter_jailbreak_detection: ^1.10.0
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/animations/loading.json
